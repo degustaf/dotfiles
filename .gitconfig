@@ -1,3 +1,21 @@
+[core]
+        editor = vim
+        pager = less
+
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        interactive = auto
+        pager = true
+        ui = auto
+
+[alias]
+        hist = log --graph --oneline --decorate
+        st = status
+
 [user]
-	name = Derek Gustafson
 	email = degustaf@gmail.com
+	name = Derek Gustafson
+[push]
+	default = simple
