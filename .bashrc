@@ -39,3 +39,5 @@ source virtualenvwrapper.sh
 export GOROOT=$HOME/go
 export GOPATH=$HOME/go_work
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+export PATH=$PATH:$HOME/.cabal/bin
