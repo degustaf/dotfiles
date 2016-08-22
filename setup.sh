@@ -38,7 +38,8 @@ df_link () {
                                        -not -name ".*.sw?" \
                                        -not -name ".git" \
                                        -not -name ".gitignore" \
-                                       -not -name ".gitmodules" -exec bash -c "$sym_link" \;
+                                       -not -name ".gitmodules" \
+                                       -not -name ".travis.yml" -exec bash -c "$sym_link" \;
 }
 
 df_update () {

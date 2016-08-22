@@ -1,0 +1,6 @@
+language: haskel
+sudo: true
+install: 
+    - sudo ./setup.sh
+script:
+    - ./test.sh

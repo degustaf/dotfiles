@@ -1,17 +1,14 @@
+#!/bin/bash
 #default prompt
 LIGHT_GREEN="\[\033[1;32m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 PS1="$LIGHT_GRAY\$(date +%H:%M) \w$LIGHT_GREEN\$ $LIGHT_GRAY"
 
-#needed for emacs to work
-export LOGNAME=`whoami`
-export USER=`whoami`
-export USERNAME=`whoami`
-
 #add .local binaries to path
 export PATH=~/.local/bin:$PATH
 
 # bash command tab-completion
+# shellcheck disable=SC1091
 source /etc/bash_completion
 
 # Set the umask so that files are owner and group writable by default,
@@ -25,16 +22,17 @@ export HISTCONTROL=ignoreboth
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-RED="\[\033[0;31m\]"
+# RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
+# GREEN="\[\033[0;32m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 
 PS1="$LIGHT_GRAY\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$LIGHT_GREEN\$ $LIGHT_GRAY"
 
 # Load virtualenvwrapper
-source virtualenvwrapper.sh
+# shellcheck source=/dev/null
+source "$(which virtualenvwrapper.sh)"
 
 export GOROOT=$HOME/go
 export GOPATH=$HOME/go_work
