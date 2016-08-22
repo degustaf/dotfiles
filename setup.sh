@@ -13,7 +13,20 @@ can_sudo () {
     	echo "Can't run $1 to without root permission."
     fi
 }
- 
+
+df_git_update () {
+    git stash |& grep -q 'No local changes to save'
+    stash=$?
+    git submodule foreach git pull --recurse-submodules origin master
+    git status |& grep -q 'working directory clean'
+    if [ $? -ne 0 ]; then
+        git commit -a -m "Updated Submodules"
+    fi
+    if [ "$stash" -ne 0 ]; then
+        git pop
+    fi
+}
+
 df_install () {
     can_sudo apt-get install vim gcc python3 python3-pip python-pip bash-completion golang
 }
@@ -45,7 +58,7 @@ while [[ $# -gt 0 ]]; do
     case $target in
         all)
             shift
-            set -- update link install "$@"
+            set -- update link git-update install "$@"
             ;;
         update)
             shift
@@ -54,6 +67,10 @@ while [[ $# -gt 0 ]]; do
         link)
             shift
             df_link
+            ;;
+        git-update)
+            shift
+            df_git_update
             ;;
         install)
             shift
@@ -65,5 +82,3 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
-
-
