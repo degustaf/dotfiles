@@ -15,6 +15,7 @@ can_sudo () {
 }
 
 df_git_update () {
+    echo "Updating submodules."
     git stash |& grep -q 'No local changes to save'
     stash=$?
     git submodule foreach git pull --recurse-submodules origin master
@@ -28,10 +29,12 @@ df_git_update () {
 }
 
 df_install () {
+    echo "Installing desired programs."
     can_sudo apt-get install vim gcc python3 python3-pip python-pip bash-completion golang
 }
 
 df_link () {
+    echo "Linking dotfiles."
     DIR="$(pwd)/$(dirname "$0")"
     sym_link="f=\"\$(basename \"{}\")\"; cd $HOME; ln -sfn \"{}\" \"$HOME/\$f\""
     find "$DIR" -maxdepth 1 -name ".*" -not -name "." \
@@ -40,9 +43,13 @@ df_link () {
                                        -not -name ".gitignore" \
                                        -not -name ".gitmodules" \
                                        -not -name ".travis.yml" -exec bash -c "$sym_link" \;
+    echo "Sourcing .bashrc."
+    # shellcheck source=/dev/null
+    source "$HOME/.bashrc"
 }
 
 df_update () {
+    echo "Updating installed programs."
     can_sudo apt-get update
 }
 
@@ -59,7 +66,7 @@ while [[ $# -gt 0 ]]; do
     case $target in
         all)
             shift
-            set -- update link git-update install "$@"
+            set -- update install link git-update "$@"
             ;;
         update)
             shift

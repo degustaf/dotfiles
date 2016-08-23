@@ -8,7 +8,7 @@ PS1="$LIGHT_GRAY\$(date +%H:%M) \w$LIGHT_GREEN\$ $LIGHT_GRAY"
 export PATH=~/.local/bin:$PATH
 
 # bash command tab-completion
-# shellcheck disable=SC1091
+# shellcheck source=/dev/null
 source /etc/bash_completion
 
 # Set the umask so that files are owner and group writable by default,
