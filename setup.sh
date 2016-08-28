@@ -30,7 +30,10 @@ df_git_update () {
 
 df_install () {
     echo "Installing desired programs."
-    can_sudo apt-get install vim gcc python3 python3-pip python-pip bash-completion golang
+    can_sudo apt-get install bash-completion cabal-install ccache gcc ghc git \
+                             golang python-pip python3 python3-pip tree vim 
+    can_sudo pip install virtualenvwrapper
+    cabal install shellcheck
 }
 
 df_link () {
@@ -44,7 +47,7 @@ df_link () {
                                        -not -name ".gitmodules" \
                                        -not -name ".travis.yml" -exec bash -c "$sym_link" \;
     echo "Sourcing .bashrc."
-    # shellcheck source=/dev/null
+    # shellcheck disable=SC1091
     source "$HOME/.bashrc"
 }
 

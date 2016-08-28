@@ -1,4 +1,4 @@
-language: haskel
+language: generic
 sudo: true
 install: 
     - sudo ./setup.sh

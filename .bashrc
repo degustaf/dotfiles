@@ -31,8 +31,17 @@ LIGHT_GRAY="\[\033[0;37m\]"
 PS1="$LIGHT_GRAY\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$LIGHT_GREEN\$ $LIGHT_GRAY"
 
 # Load virtualenvwrapper
+if [[ $- =~ u ]]; then
+    ORIGINAL_U_VALUE=true
+    set +u
+else
+    ORIGINAL_U_VALUE=false
+fi
 # shellcheck source=/dev/null
 source "$(which virtualenvwrapper.sh)"
+if "$ORIGINAL_U_VALUE"; then
+    set -u
+fi
 
 export GOROOT=$HOME/go
 export GOPATH=$HOME/go_work
