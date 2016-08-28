@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -u
+# set -u
 
 can_sudo () {
     if [ "$#" -eq 0 ]; then
@@ -19,9 +19,13 @@ df_git_update () {
     git stash |& grep -q 'No local changes to save'
     stash=$?
     git submodule foreach git pull --recurse-submodules origin master
+    set +e
     git status |& grep -q 'working directory clean'
     if [ $? -ne 0 ]; then
+        set -e
         git commit -a -m "Updated Submodules"
+    else
+        set -e
     fi
     if [ "$stash" -ne 0 ]; then
         git pop
@@ -41,7 +45,11 @@ df_install () {
 df_link () {
     echo "Linking dotfiles."
     DIR="$(pwd)/$(dirname "$0")"
-    sym_link="f=\"\$(basename \"{}\")\"; cd $HOME; ln -sfn \"{}\" \"$HOME/\$f\""
+    sym_link="f=\"\$(basename \"{}\")\";\
+              echo \"\$f\";\
+              cd $HOME;\
+              rm -rf \"$HOME/\$f\";\
+              ln -sfn \"{}\" \"$HOME/\$f\""
     find "$DIR" -maxdepth 1 -name ".*" -not -name "." \
                                        -not -name ".*.sw?" \
                                        -not -name ".git" \
