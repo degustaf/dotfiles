@@ -1,6 +1,8 @@
 language: generic
-sudo: true
+sudo: required
+dist: trusty
+os: linux
 install: 
-    - sudo ./setup.sh
+    - sudo bash --verbose ./setup.sh
 script:
     - ./test.sh

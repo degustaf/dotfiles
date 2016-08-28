@@ -30,9 +30,11 @@ df_git_update () {
 
 df_install () {
     echo "Installing desired programs."
+    can_sudo sudo apt-get update
     can_sudo apt-get install bash-completion cabal-install ccache gcc ghc git \
                              golang python-pip python3 python3-pip tree vim 
     can_sudo pip install virtualenvwrapper
+    cabal update
     cabal install shellcheck
 }
 

@@ -9,7 +9,7 @@ export PATH=~/.local/bin:$PATH
 
 # bash command tab-completion
 # shellcheck source=/dev/null
-source /etc/bash_completion
+# source /etc/bash_completion
 
 # Set the umask so that files are owner and group writable by default,
 # and read-only for others.
@@ -32,15 +32,13 @@ PS1="$LIGHT_GRAY\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$LIGHT_GREEN\$ $LI
 
 # Load virtualenvwrapper
 if [[ $- =~ u ]]; then
-    ORIGINAL_U_VALUE=true
     set +u
-else
-    ORIGINAL_U_VALUE=false
-fi
-# shellcheck source=/dev/null
-source "$(which virtualenvwrapper.sh)"
-if "$ORIGINAL_U_VALUE"; then
+    # shellcheck source=/dev/null
+    source "$(which virtualenvwrapper.sh)"
     set -u
+else
+    # shellcheck source=/dev/null
+    source "$(which virtualenvwrapper.sh)"
 fi
 
 export GOROOT=$HOME/go
