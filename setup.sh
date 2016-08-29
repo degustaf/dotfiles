@@ -10,37 +10,35 @@ can_sudo () {
     if [ "$EUID" -eq 0 ]; then
         "$@"
     else
-    	echo "Can't run $1 to without root permission."
+    	echo "Can't run $1 without root permission."
     fi
 }
 
 df_git_install () {
     echo "Finishing installation of git submodules"
     git submodule update --init --recursive
-    git submodule foreach checkout master
+    git submodule foreach git checkout master
 }
 
 df_git_update () {
     echo "Updating submodules."
-    git stash |& grep -q 'No local changes to save'
-    stash=$?
-    git submodule foreach git pull --recurse-submodules origin master
-    set +e
-    git status |& grep -q 'working directory clean'
-    if [ $? -ne 0 ]; then
-        set -e
-        git commit -a -m "Updated Submodules"
+    if git stash |& grep -q 'No local changes to save'; then
+        stash=1
     else
-        set -e
+        stash=0
     fi
-    if [ "$stash" -ne 0 ]; then
-        git pop
+    git submodule foreach git pull --recurse-submodules origin master
+    if [[ $(git status |& grep -q 'working directory clean') -ne 0 ]]; then 
+        git commit -a -m "Updated Submodules"
+    fi
+    if [[ "$stash" -eq 0 ]]; then
+        git stash pop
     fi
 }
 
 df_install () {
     echo "Installing desired programs."
-    can_sudo sudo apt-get update
+    can_sudo apt-get update
     can_sudo apt-get install bash-completion cabal-install ccache gcc ghc git \
                              golang python-pip python3 python3-pip tree vim 
     can_sudo pip install virtualenvwrapper
@@ -62,9 +60,13 @@ df_link () {
                                        -not -name ".gitignore" \
                                        -not -name ".gitmodules" \
                                        -not -name ".travis.yml" -exec bash -c "$sym_link" \;
-    echo "Sourcing .bashrc."
-    # shellcheck disable=SC1091
-    source "$HOME/.bashrc"
+    if [ "$EUID" -eq 0 ]; then
+        echo "Can't source .bashrc as root."
+    else
+        echo "Sourcing .bashrc."
+        # shellcheck disable=SC1090
+        source "$HOME/.bashrc"
+    fi
 }
 
 df_update () {

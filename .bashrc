@@ -8,8 +8,15 @@ PS1="$LIGHT_GRAY\$(date +%H:%M) \w$LIGHT_GREEN\$ $LIGHT_GRAY"
 export PATH=~/.local/bin:$PATH
 
 # bash command tab-completion
-# shellcheck source=/dev/null
-# source /etc/bash_completion
+if [[ $- =~ e ]]; then
+    set +e
+    # shellcheck disable=SC1091
+    source /etc/bash_completion
+    set -e
+else
+    # shellcheck disable=SC1091
+    source /etc/bash_completion
+fi
 
 # Set the umask so that files are owner and group writable by default,
 # and read-only for others.
@@ -33,11 +40,11 @@ PS1="$LIGHT_GRAY\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$LIGHT_GREEN\$ $LI
 # Load virtualenvwrapper
 if [[ $- =~ u ]]; then
     set +u
-    # shellcheck source=/dev/null
+    # shellcheck disable=SC1090
     source "$(which virtualenvwrapper.sh)"
     set -u
 else
-    # shellcheck source=/dev/null
+    # shellcheck disable=SC1090
     source "$(which virtualenvwrapper.sh)"
 fi
 

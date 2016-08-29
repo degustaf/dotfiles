@@ -3,6 +3,7 @@ sudo: required
 dist: trusty
 os: linux
 install: 
-    - sudo bash --verbose ./setup.sh
+    - sudo ./setup.sh
+    - source .bashrc
 script:
     - ./test.sh
