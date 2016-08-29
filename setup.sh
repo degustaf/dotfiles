@@ -14,6 +14,12 @@ can_sudo () {
     fi
 }
 
+df_git_install () {
+    echo "Finishing installation of git submodules"
+    git submodule update --init --recursive
+    git submodule foreach checkout master
+}
+
 df_git_update () {
     echo "Updating submodules."
     git stash |& grep -q 'No local changes to save'
@@ -79,11 +85,15 @@ while [[ $# -gt 0 ]]; do
     case $target in
         all)
             shift
-            set -- update install link git-update "$@"
+            set -- update git-install install link git-update "$@"
             ;;
         update)
             shift
             df_update
+            ;;
+        git-install)
+            shift
+            df_git_install
             ;;
         link)
             shift
