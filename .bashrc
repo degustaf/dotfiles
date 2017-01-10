@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-function tab_completion() {
+function tab_completion {
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     # shellcheck disable=SC1091
@@ -19,6 +13,7 @@ fi
 }
 
 #default prompt
+YELLOW="\[\033[0;33m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 
@@ -48,11 +43,6 @@ HISTFILESIZE=2000
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-# RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-# GREEN="\[\033[0;32m\]"
-LIGHT_GREEN="\[\033[1;32m\]"
-LIGHT_GRAY="\[\033[0;37m\]"
 
 PS1="$LIGHT_GRAY\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$LIGHT_GREEN\$ $LIGHT_GRAY"
 
