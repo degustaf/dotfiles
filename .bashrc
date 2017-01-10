@@ -1,12 +1,14 @@
 #!/bin/bash
 
+set -x
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-function tab_completion() {
+function tab_completion {
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     # shellcheck disable=SC1091
