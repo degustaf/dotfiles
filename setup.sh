@@ -40,7 +40,10 @@ df_install () {
     echo "Installing desired programs."
     can_sudo apt-get update
     can_sudo apt-get install bash-completion cabal-install ccache gcc ghc git \
-                             golang python-pip python3 python3-pip tree vim 
+                             golang python-pip python3 python3-pip tree vim \
+                             build-essential libbz2-dev libssl-dev libpng-dev \
+                             libreadline-dev libsqlite3-dev libfreetype6-dev
+
     can_sudo pip install virtualenvwrapper
     cabal update
     cabal install shellcheck
