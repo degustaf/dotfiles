@@ -13,9 +13,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-" convert all typed tabs to spaces
-set expandtab
-
 " syntax highlighting
 syntax on
 color koehler
@@ -48,9 +45,6 @@ set number
 " when joining lines, don't insert two spaces after punctuation
 set nojoinspaces
 
-" Make searches case-sensitive only if they contain upper-case characters
-set ignorecase
-set smartcase
 " show search matches as the search pattern is typed
 set incsearch
 " search-next wraps back to start of file
@@ -62,10 +56,6 @@ map <bs> :noh<CR>
 
 " grep for word under cursor
 noremap <Leader>g :grep -rw '<C-r><C-w>' .<CR>
-
-" ctrl-s to save
-map <C-s> :w<CR>
-map! <C-s> <Esc>:w<CR>
 
 " make tab completion for files/buffers act like bash
 set wildmenu
@@ -230,3 +220,27 @@ let g:syntastic_check_on_wq = 0
 
 " For use in browser based terminals where <c-w> is suboptimal
 nnoremap <c-d> <c-w>
+nnoremap <c-[> <c-t>
+
+" Disable arrows to encourage learning hjkl movements.
+nnoremap <buffer> <Left> <nop>
+nnoremap <buffer> <Right> <nop>
+nnoremap <buffer> <Up> <nop>
+nnoremap <buffer> <Down> <nop>
+nnoremap <buffer> <PageUp> <nop>
+nnoremap <buffer> <PageDown> <nop>
+
+inoremap <buffer> <Left> <nop>
+inoremap <buffer> <Right> <nop>
+inoremap <buffer> <Up> <nop>
+inoremap <buffer> <Down> <nop>
+inoremap <buffer> <PageUp> <nop>
+inoremap <buffer> <PageDown> <nop>
+
+vnoremap <buffer> <Left> <nop>
+vnoremap <buffer> <Right> <nop>
+vnoremap <buffer> <Up> <nop>
+vnoremap <buffer> <Down> <nop>
+vnoremap <buffer> <PageUp> <nop>
+vnoremap <buffer> <PageDown> <nop>
+
