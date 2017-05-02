@@ -220,27 +220,27 @@ let g:syntastic_check_on_wq = 0
 
 " For use in browser based terminals where <c-w> is suboptimal
 nnoremap <c-d> <c-w>
-nnoremap <c-[> <c-t>
+" nnoremap <c-[> <c-t>	" This doesn't work because <c-[> is not a valid remap target.
 
 " Disable arrows to encourage learning hjkl movements.
-nnoremap <buffer> <Left> <nop>
-nnoremap <buffer> <Right> <nop>
-nnoremap <buffer> <Up> <nop>
-nnoremap <buffer> <Down> <nop>
-nnoremap <buffer> <PageUp> <nop>
-nnoremap <buffer> <PageDown> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <PageUp> <nop>
+nnoremap <PageDown> <nop>
 
-inoremap <buffer> <Left> <nop>
-inoremap <buffer> <Right> <nop>
-inoremap <buffer> <Up> <nop>
-inoremap <buffer> <Down> <nop>
-inoremap <buffer> <PageUp> <nop>
-inoremap <buffer> <PageDown> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <PageUp> <nop>
+inoremap <PageDown> <nop>
 
-vnoremap <buffer> <Left> <nop>
-vnoremap <buffer> <Right> <nop>
-vnoremap <buffer> <Up> <nop>
-vnoremap <buffer> <Down> <nop>
-vnoremap <buffer> <PageUp> <nop>
-vnoremap <buffer> <PageDown> <nop>
+vnoremap <Left> <nop>
+vnoremap <Right> <nop>
+vnoremap <Up> <nop>
+vnoremap <Down> <nop>
+vnoremap <PageUp> <nop>
+vnoremap <PageDown> <nop>
 
