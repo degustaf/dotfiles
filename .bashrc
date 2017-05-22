@@ -68,9 +68,11 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH=$PATH:$HOME/.cabal/bin
 
-export PATH=$PATH:$HOME/.pyenv/bin
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ -d "$HOME/.pyenv/bin" ]; then
+	export PATH=$PATH:$HOME/.pyenv/bin
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
 
 # shellcheck disable=SC1091
-source .alias
+source "$HOME/.alias"
