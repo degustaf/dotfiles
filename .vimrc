@@ -166,6 +166,8 @@ set statusline+=%2c,
 " current line / lines in file
 set statusline+=%l/%L
 
+set  belloff=all
+
 " always show status line
 set laststatus=2
 
@@ -217,6 +219,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_config_file = '.syntastic_config_cpp'
 
 " For use in browser based terminals where <c-w> is suboptimal
 nnoremap <c-d> <c-w>

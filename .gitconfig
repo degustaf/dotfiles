@@ -19,3 +19,5 @@
 	name = Derek Gustafson
 [push]
 	default = simple
+[credential]
+	helper = store

@@ -36,17 +36,22 @@ df_git_update () {
     fi
 }
 
+install_haskell () {
+	echo "Setting up haskell environment."
+	can_sudo curl -sSL https://get.haskellstack.org/ | sh
+	stack install hoogle
+}
+
 df_install () {
     echo "Installing desired programs."
     can_sudo apt-get update
-    can_sudo apt-get install bash-completion cabal-install ccache gcc ghc git \
+    can_sudo apt-get install bash-completion ccache gcc git \
                              golang python-pip python3 python3-pip tree vim \
                              build-essential libbz2-dev libssl-dev libpng-dev \
                              libreadline-dev libsqlite3-dev libfreetype6-dev
 
     can_sudo pip install virtualenvwrapper
-    cabal update
-    cabal install shellcheck
+	can_sudo install_haskell
 }
 
 df_link () {
