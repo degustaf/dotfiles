@@ -51,17 +51,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Load virtualenvwrapper
-if [[ $- =~ u ]]; then
-    set +u
-    # shellcheck disable=SC1090
-    source "$(which virtualenvwrapper.sh)"
-    set -u
-else
-    # shellcheck disable=SC1090
-    source "$(which virtualenvwrapper.sh)"
-fi
-
 export GOROOT=$HOME/go
 export GOPATH=$HOME/go_work
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
@@ -76,3 +65,8 @@ fi
 
 # shellcheck disable=SC1091
 source "$HOME/.alias"
+
+export VIRTUALENVWRAPPER_PYTHON=`which python3`
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh

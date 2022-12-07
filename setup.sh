@@ -46,7 +46,7 @@ df_install () {
     echo "Installing desired programs."
     can_sudo apt-get update
     can_sudo apt-get install bash-completion ccache gcc git \
-                             golang python-pip python3 python3-pip tree vim \
+                             golang python3 python3-pip tree vim \
                              build-essential libbz2-dev libssl-dev libpng-dev \
                              libreadline-dev libsqlite3-dev libfreetype6-dev
 
@@ -65,6 +65,7 @@ df_link () {
     find "$DIR" -maxdepth 1 -name ".*" -not -name "." \
                                        -not -name ".*.sw?" \
                                        -not -name ".git" \
+                                       -not -name ".gitconfig" \
                                        -not -name ".gitignore" \
                                        -not -name ".gitmodules" \
                                        -not -name ".travis.yml" -exec bash -c "$sym_link" \;
