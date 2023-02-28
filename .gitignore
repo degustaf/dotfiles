@@ -12,6 +12,3 @@
 Session.vim
 .netrwhist
 .swp
-
-# Exercism stores a secret token, so we won't publish that.
-.config/exercism
