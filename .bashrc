@@ -63,10 +63,19 @@ if [ -d "$HOME/.pyenv/bin" ]; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
-# shellcheck disable=SC1091
+if command -v python3 &> /dev/null; then
+	VIRTUALENVWRAPPER_PYTHON=$(command -v python3)
+	export VIRTUALENVWRAPPER_PYTHON
+	export WORKON_HOME=$HOME/.virtualenvs
+	export PROJECT_HOME=$HOME/Devel
+	# shellcheck disable=SC1091
+	source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# shellcheck disable=SC1090,SC1091
 source "$HOME/.alias"
 
-export VIRTUALENVWRAPPER_PYTHON=`which python3`
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -d "$HOME/.cargo" ]; then
+	# shellcheck disable=SC1090
+	source "$HOME/.cargo/env"
+fi

@@ -12,6 +12,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
+		# shellcheck disable=SC1090
 	. "$HOME/.bashrc"
     fi
 fi
@@ -31,11 +32,19 @@ VERSION=v16.14.0
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 
-if [ -e /home/degustaf/.nix-profile/etc/profile.d/nix.sh ]; then . /home/degustaf/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+	# shellcheck disable=SC1090
+	. "${HOME}degustaf/.nix-profile/etc/profile.d/nix.sh"
+fi
 
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Rust: set PATH so it includes user's private cargo bin if it exists
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
+fi
+if [ -e "$HOME/.cargo/bin" ] ; then
+	# shellcheck disable=SC1090
+	. "$HOME/.cargo/env"
 fi
