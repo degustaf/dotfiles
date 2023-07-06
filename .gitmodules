@@ -35,3 +35,6 @@
 	path = .vim/pack/degustaf/start/--force
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
+[submodule ".vim/pack/degustaf/start/rust.vim"]
+	path = .vim/pack/degustaf/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
