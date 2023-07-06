@@ -24,3 +24,6 @@
 [submodule ".vim/pack/degustaf/start/syntastic"]
 	path = .vim/pack/degustaf/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
+[submodule ".vim/pack/degustaf/start/vim-go"]
+	path = .vim/pack/degustaf/start/vim-go
+	url = https://github.com/fatih/vim-go.git
