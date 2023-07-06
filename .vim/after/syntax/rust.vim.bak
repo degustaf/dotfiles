@@ -1,0 +1,3 @@
+" Vim options for Rust source files beyond standard options.
+
+set foldmethod=syntax

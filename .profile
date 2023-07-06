@@ -34,7 +34,7 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 
 if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
 	# shellcheck disable=SC1090
-	. "${HOME}degustaf/.nix-profile/etc/profile.d/nix.sh"
+	. "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 fi
 
 GPG_TTY=$(tty)

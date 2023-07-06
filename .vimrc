@@ -110,7 +110,7 @@ set tags=./tags,tags
 " recursively search file's parent dirs for tags file
 " set tags+=./tags;/
 " recursively search cwd's parent dirs for tags file
-set tags+=tags;/
+set tags+=tags,/
 
 "autocompletion
 inoremap <c-space> <c-n>
@@ -247,3 +247,6 @@ vnoremap <Down> <nop>
 vnoremap <PageUp> <nop>
 vnoremap <PageDown> <nop>
 
+" I don't feel like trying to figure out how to upgrade my vim at the moment.
+" It's only a minor version update. Shouldn't be an issue...
+let g:coc_disable_startup_warning = 1

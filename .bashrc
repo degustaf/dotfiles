@@ -76,6 +76,14 @@ fi
 source "$HOME/.alias"
 
 if [ -d "$HOME/.cargo" ]; then
-	# shellcheck disable=SC1090
+	# shellcheck disable=SC1090,SC1091
 	source "$HOME/.cargo/env"
+fi
+
+if [ -d "/usr/lib/linux-tools" ]; then
+	# There's a smarter way to do this that doesn't include hard coding the version number.
+	export PERF="/usr/lib/linux-tools/5.4.0-146-generic/perf"
+	# System perf is broken for WSL, and installing linux-tools doesn't replace the
+	# broken one, so we need the new one first in our path.
+	export PATH="$PERF:$PATH"
 fi
