@@ -27,3 +27,11 @@
 [submodule ".vim/pack/degustaf/start/vim-go"]
 	path = .vim/pack/degustaf/start/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/pack/degustaf/start/coc.nvim"]
+	path = .vim/pack/degustaf/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release
+[submodule ".vim/pack/degustaf/start/--force"]
+	path = .vim/pack/degustaf/start/--force
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release
