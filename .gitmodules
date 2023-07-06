@@ -21,3 +21,6 @@
 	path = .vim/bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 	branch = release
+[submodule ".vim/pack/degustaf/start/syntastic"]
+	path = .vim/pack/degustaf/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
