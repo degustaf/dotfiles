@@ -46,6 +46,7 @@ install_neovim () {
 	echo "Setting up neovim."
 	git clone https://github.com/neovim/neovim
 	cd neovim
+	git checkout stable
 	make CMAKE_BUILD_TYPE=RelWithDebInfo
 	can_sudo make install
 	can_sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 100

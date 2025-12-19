@@ -78,3 +78,4 @@ if [ -d "/usr/lib/linux-tools" ]; then
 	# broken one, so we need the new one first in our path.
 	export PATH="$PERF:$PATH"
 fi
+. "$HOME/.cargo/env"
