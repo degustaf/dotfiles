@@ -9,6 +9,7 @@
 [user]
 	email = degustaf@gmail.com
 	name = Derek Gustafson
+	signinkey = E85CFEA4598B13B6
 
 [push]
 	default = simple
