@@ -75,7 +75,6 @@ df_link () {
     find "$DIR" -maxdepth 1 -name ".*" -not -name "." \
                                        -not -name ".*.sw?" \
                                        -not -name ".git" \
-                                       -not -name ".gitconfig" \
                                        -not -name ".gitignore" \
                                        -not -name ".gitmodules" \
                                        -not -name ".travis.yml" -exec bash -c "$sym_link" \;

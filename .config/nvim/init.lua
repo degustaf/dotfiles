@@ -39,6 +39,9 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Make "search hit bottom..." messages show
+vim.o.shortmess = vim.o.shortmess .. 'S'
+
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
 
@@ -54,7 +57,7 @@ vim.o.splitbelow = true
 
 -- Enable folding
 vim.o.foldenable = true
-vim.o.foldmethod = 'indent'
+vim.o.foldmethod = 'syntax'
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -572,7 +575,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = {}
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
